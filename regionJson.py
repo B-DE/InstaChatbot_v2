@@ -1,33 +1,59 @@
-
 import json
 
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
+# region.txt to list
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+def txt_to_list(txt_path, list_name):
+
+    with open(txt_path, 'r', encoding='utf-8') as f:
+        for line in f:
+            line = line.strip()
+            list_name.append(line)
+
+    return list_name
+
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
+# region.txt to list
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+def save_json(json_data, save_path):
+
+    with open(save_path, 'w') as outfile:
+        json.dump(json_data, outfile, indent=4)
+        # [document] json 경로 설정시 마지막에 파일 이름까지 넣기!!
+        # 기존 존재 파일이 아니더라도 원하는 이름으로 넣기!!
+        # PermissionError: [Errno 13] Permission denied: 'file_name'
+
+
+
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
+# execution
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+## 제주시 execution
 jejusi = []
+jejusi_txt = 'C:\Project\InstaChatbot\Insta_Chatbot_v2\제주시.txt'
+txt_to_list(jejusi_txt, jejusi)
+
+
+## 서귀포시 execution
 seogwuiposi = []
-
-# 1. 제주시 데이터 리스트 형식 저장
-
-with open('C:\Project\InstaChatbot\Insta_Chatbot_v2\제주시.txt', 'r', encoding = 'utf-8') as f:
-    for line in f:
-        line = line.strip()
-        jejusi.append(line)
-
-# 2. 서귀포시 데이터 리스트 형식 저장
-
-with open('C:\Project\InstaChatbot\Insta_Chatbot_v2\서귀포시.txt', encoding = 'UTF8') as f:
-    for line in f:
-        line = line.strip()
-        seogwuiposi.append(line)
+seogwuiposi_txt = 'C:\Project\InstaChatbot\Insta_Chatbot_v2\서귀포시.txt'
+txt_to_list(seogwuiposi_txt, seogwuiposi)
 
 
-# 3. json 형식으로 저장
+## integrate list for json
 region = {'jejusi' : jejusi, 'seogwuiposi' : seogwuiposi}
 
-# print(region)
 
-print(json.dumps(region, indent = 4))
-# json = json.dump(region, indent = 4)
-# print(json)
-
-# print(jejusi)
-# print(seogwuiposi)
+## save region data as json
+json_path = 'C:\Project\InstaChatbot\Insta_Chatbot_v2/region.json'
+save_json(region,json_path)
 
