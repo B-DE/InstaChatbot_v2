@@ -25,9 +25,9 @@ def save_json(json_data, save_path):
 
     with open(save_path, 'w') as outfile:
         json.dump(json_data, outfile, indent=4)
-        # [document] json 경로 설정시 마지막에 파일 이름까지 넣기!!
-        # 기존 존재 파일이 아니더라도 원하는 이름으로 넣기!!
-        # PermissionError: [Errno 13] Permission denied: 'file_name'
+        ## [document] json 경로 설정시 마지막에 파일 이름까지 넣기!!
+        ## 기존 존재 파일이 아니더라도 원하는 이름으로 넣기!!
+        ## PermissionError: [Errno 13] Permission denied: 'file_name'
 
 
 
